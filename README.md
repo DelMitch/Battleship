@@ -1,2 +1,2 @@
 # Battleship
-Group Project 1
+Project-1_Group-7
