@@ -1,3 +1,5 @@
 Mission Log -- Addeline Mitchell
 
 Feb 8, 1707-1715: Created repository for project 1, created log files for DH and myself, emailed repo url to Chappell.
+
+Feb 17, 1602-1634: Did some TDD in class. Our requirement was board initialization with '~', because that's the character that looks most like water to me. Set up the test with the catch framework and we got our code to compile and pass the test. So far, so good. Note: need to discuss characters to be used to indicate a hit or a miss and further discuss out-of-class meetings.
