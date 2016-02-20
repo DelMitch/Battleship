@@ -1,0 +1,1 @@
+-- board object, two-dimensional vector of strings forming a 10 by 10 grid, init with " ~" (because it looks like water, the space is there for visual formatting of the board)
