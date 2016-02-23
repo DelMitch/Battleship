@@ -1,1 +1,15 @@
 Mission Log -- Dain Harmon
+2/17/2016-
+Tried some pair programming and TDD. CATCH is an interesting system though I don't quite have the right mind set to think up the boolean it needs to test. Pair programming was so so, caught a minor error, but I'm not sure it was particularly helpful as they would have been quickly found with compile errors.
+
+2/18/2016-
+I wonder if we'll address timing/profiling tests?... can CATCH do those? Something to look up. 
+
+2/19/2016-
+Presentation.
+
+2/20-22/2016-
+No work done
+
+2/23/2016-
+CATCH is hard to use with psuedo-gui or proper gui stuff or arrays. Wrote an isShip function for use in placing ships and determining hits along with a test. Also started work on board setup functions. Did pair programming work to develop these. Partner push stuff to Git.
