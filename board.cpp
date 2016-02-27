@@ -22,10 +22,69 @@ board::~board()
 board play1;
 board play2;
 
+void board::intro()
+{
+	cout << "Glad you could make it, Captains.\n" << endl;
+
+	cout << "The two of you have been selected to participate in an Experimental Training Program.\n" << endl;
+
+	cout << endl;
+
+	cout << "Tactical Brief:\n"
+		<< "\tA Lieutenant will be assigned to each of you, they will keep you updated on the results\n"
+		<< "\tof your commands and prompt you for coordinates.\n" << endl;
+
+	cout << "\tEach Captain is responsible for five ships:\n"
+		<< "\t\t1 Carrier\t5 shots to sink\n"
+		<< "\t\t1 Battleship\t4 shots to sink\n"
+		<< "\t\t2 Cruisers\t3 shots to sink\n"
+		<< "\t\t1 Destroyer\t2 shots to sink\n" << endl;
+
+	cout << "\tYou will place each ship horizontally or vertically within the boundaries of a 10 x 10 grid.\n"
+		<< "\tThe location each ship is placed in is entirely up to you.\n" << endl;
+
+	cout << "Terms of Engagement:\n"
+		<< "\tYou will take turns shooting into your opponent's field.\n"
+		<< "\tYou will be shooting blind; you won't know where your oppenent's ships are until you hit them.\n"
+		<< "\tWhoever sinks all five of their opponent's ships first will be declared the Victor.\n" << endl;
+
+	cout << "\n\n\n\n\nPress ENTER to continue..." << endl;
+	getchar();
+
+	cout << "WELCOME TO\n" << endl;
+
+	cout << "\t__________    ____________________________.____     ___________ _________ ___ ___ ._____________ \n"
+		<< "\t\\______   \\  /  _  \\__    ___ /\\__    ___/|    |    \\_   _____//   _____//   |   \\|   \\______   \\ \n"
+		<< "\t |    |  _/ /  /_\\  \\|    |      |    |   |    |     |    __)_ \\_____  \\/    ~    \\   ||     ___/\n"
+		<< "\t |    |   \\/    |    \\    |      |    |   |    |___  |        \\/        \\    Y    /   ||    |\n"
+		<< "\t |______  /\\____|__  /____|      |____|   |_______ \\/_______  /_______  /\\___|_  /|___||____|\n"
+		<< "\t        \\/          \\/                            \\/        \\/        \\/       \\/\n" << endl;
+
+	cout << "\t\t                                      |__\n"
+		<< "\t\t                                      |\\/\n"
+		<< "\t\t                                      ---\n"
+		<< "\t\t                                      / | [\n"
+		<< "\t\t                              !       | |||\n"
+		<< "\t\t                            _/|     _ /|-++'\n"
+		<< "\t\t                        +  +--|    |--|--|_ |-\n"
+		<< "\t\t                     { /|__|  |/\\_ _|  |--- |||__/'\n"
+		<< "\t\t                    +---------------___[}-_===_.'____                  /\\\n"
+		<< "\t\t                ____`-' ||___-{]_| _[}-  |     |_[___\==--              \\/   _\n"
+		<< "\t\t __..._____--==/___]_|__|_____________________________[___\ == --____,------' .7\n"
+		<< "\t\t|                                                                    BB - 64 /'\n"
+		<< "\t\t \\__________________________________________________________________________|'" << endl;
+
+	cout << "\n\n\n\n\nPress ENTER to continue..." << endl;
+	getchar();
+	cout << "\n\n\n\n\n\n\n\n\n\n" << endl;
+}
+
 // start
 // standing in for main
 void board::start()
 {
+	intro();
+
 	cout << "Set board for PLAYER 1\n" << endl;
 	play1.setBoard(5);
 	play1.setBoard(4);
@@ -80,9 +139,9 @@ void board::setBoard(int shipSize)
 
 		do
 		{
-			cout << "Horizontal: ";
+			cout << "X-Coordinate: ";
 			getline(cin, input);
-			if (input[0] == 'r' || input[0] == 'R') // checks for r
+			if (input[0] == 'r' || input[0] == 'R' || input[0] == '\n') // checks for r
 			{
 				restart = true;
 				break;
@@ -96,15 +155,15 @@ void board::setBoard(int shipSize)
 				xCoord = -1;
 			}
 		}
-		while (xCoord >= 0 && xCoord < 10);
+		while (xCoord < 0 && xCoord >= 10);
 
 		if (!restart)
 		{
 			do
 			{
-				cout << "Vertical: ";
+				cout << "Y-Coordinate: ";
 				getline(cin, input);
-				if (input[0] == 'r' || input[0] == 'R') // checks for r
+				if (input[0] == 'r' || input[0] == 'R' || input[0] == '\n') // checks for r
 				{
 					restart = true;
 					break;
@@ -117,7 +176,7 @@ void board::setBoard(int shipSize)
 				{
 					yCoord = -1;
 				}
-			} while (yCoord >= 0 && yCoord < 10);
+			} while (yCoord < 0 && yCoord >= 10);
 		}
 		
 		if (!restart)
@@ -131,24 +190,62 @@ void board::setBoard(int shipSize)
 					restart = true;
 					break;
 				}
-				else if (orient[0] == 'h' || orient[0] == 'H')
+				else if (orient[0] == 'v' || orient[0] == 'V')
 				{
 					if (xCoord + shipSize <= 10)
 					{ valid = true; }
 				}
-				else if (orient[0] == 'v' || orient[0] == 'V')
+				else if (orient[0] == 'h' || orient[0] == 'H')
 				{
 					if (yCoord + shipSize <= 10)
 					{ valid = true; }
 				}
 			} while (!valid);
 		}
+
+		if (!restart)
+		{
+			
+			if (orient[0] == 'v' || orient[0] == 'V')
+			{
+				for (int i = 0; i < shipSize; ++i)
+				{
+					if (isShip(xCoord + i, yCoord))
+					{ restart = true; }
+				}
+			}
+			else if (orient[0] == 'h' || orient[0] == 'H')
+			{
+				for (int ii = 0; ii < shipSize; ++ii)
+				{
+					if (isShip(xCoord, yCoord + ii))
+					{ restart = true; }
+				}
+			}
+			
+			if (restart == true)
+			{ cout << "You cannot place your ship there, SIR." << endl; }
+		}
+		if (!restart)
+		{
+			if (orient[0] == 'v' || orient[0] == 'V')
+			{
+				for (int i = 0; i < shipSize; ++i)
+				{
+					myWaters[xCoord][yCoord + i] = " +";
+				}
+			}
+			else if (orient[0] == 'h' || orient[0] == 'H')
+			{
+				for (int ii = 0; ii < shipSize; ++ii)
+				{
+					myWaters[xCoord + 1][yCoord] = " +";
+				}
+			}
+		}
+	// NEED TO CONFIRM POSITION WITH USER
 	}
 	while (!restart);
-	
-	// NEED TO CHECK IF OVERLAP
-	// NEED TO ACTUALLY LAY SOME SHIPS DOWN
-	// NEED TO CONFIRM POSITION WITH USER
 }
 
 // isShip
@@ -157,9 +254,7 @@ void board::setBoard(int shipSize)
 bool board::isShip(int x, int y)
 {
 	if (myWaters[x][y] != " ~")
-	{
-		return true;
-	}
+	{ return true; }
 	return false;
 }
 
@@ -171,7 +266,7 @@ void board::printBoard() // need to figure out all the places to call this
 	{
 		cout << "  " << i << "  |";
 		for (int ii = 0; ii < 10; ++ii)
-		{ cout << play1.waves[i][ii]; }
+		{ cout << play1.myWaters[i][ii]; }
 		cout << " |" << endl;
 	}
 	cout << "      ---------------------" << endl;
