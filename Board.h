@@ -24,6 +24,7 @@ class board
 		board();
 		~board();
 
+		void intro();
 		void start();
 		void setBoard(int);
 		bool isShip(int, int);
