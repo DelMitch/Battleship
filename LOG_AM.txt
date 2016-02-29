@@ -5,3 +5,5 @@ Feb 8, 1707-1715: Created repository for project 1, created log files for DH and
 Feb 17, 1602-1634: Did some TDD in class. Our requirement was board initialization with '~', because that's the character that looks most like water to me. Set up the test with the catch framework and we got our code to compile and pass the test. So far, so good. Note: need to discuss characters to be used to indicate a hit or a miss and further discuss out-of-class meetings.
 
 Feb 20, 1220-1317: Added print function to board class. Changed chars to strings for visual formatting purposes. Updated the repo.
+
+Feb 26, 1726-2148: Fixed input issue(s) (there had been a 'cin >> input;' that should have been 'getline(cin, input);' that we missed when we decided to use the getline function for input) and it is [hopefully] now idiot-proof. We'll either need a village idiot or a kitten who thinks walking across a keyboard is the greatest thing since catching laser dots in order to fully test that though. All current tests currently pass. Need to set up a time to meet with DH next week.
