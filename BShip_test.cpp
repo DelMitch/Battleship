@@ -39,17 +39,9 @@ void printB(board b)
 // creation test //
 TEST_CASE("Board Initialization", "[board]")
 {
-<<<<<<< HEAD
 	//b.start();
 
 	// board initialization tests //
-=======
-	
-
-	board b;
-	
-	//b.start();
->>>>>>> f9faa63662b0c86a11129e940bdc2f4b1f31bd8a
 
 	for (int i = 0; i < 10; ++i)
 	{
@@ -61,18 +53,6 @@ TEST_CASE("Board Initialization", "[board]")
 	}
 }
 
-<<<<<<< HEAD
-=======
-	REQUIRE(b.isShip(0, 0) == false);
-	
-	b.myWaters[3][2] = " #";
-	REQUIRE(b.isShip(3, 2) == true);
-
-	// to test the print function, I put it here
-	// because I didn't know how to use REQUIRE on it
-	b.myWaters[4][7] = " X"; // suggested symbol for 'hit'
-	b.myWaters[2][0] = " O"; // suggested symbol for 'miss'
->>>>>>> f9faa63662b0c86a11129e940bdc2f4b1f31bd8a
 
 // overlap tests //
 TEST_CASE("Ships Overlapping", "[board]")
@@ -98,7 +78,6 @@ TEST_CASE("Reset Board", "[board]")
 	for (int i = 0; i < 10; ++i)
 	{
 		for (int ii = 0; ii < 10; ++ii)
-<<<<<<< HEAD
 		{
 			REQUIRE(b.myWaters[i][ii] == " ~");
 		}
@@ -124,12 +103,6 @@ TEST_CASE("Interactive Setup", "[board]")
 
 	b.setBoard(2);
 	printB(b);
-=======
-		{ cout << b.myWaters[i][ii]; }
-		cout << " |" << endl;
-	}
-	cout << "      ---------------------" << endl;
->>>>>>> f9faa63662b0c86a11129e940bdc2f4b1f31bd8a
 
 	int shipCount = 0;
 	for (int i = 0; i < 10; ++i)
@@ -142,8 +115,4 @@ TEST_CASE("Interactive Setup", "[board]")
 	}
 
 	REQUIRE(shipCount == 17);
-<<<<<<< HEAD
-=======
-
->>>>>>> f9faa63662b0c86a11129e940bdc2f4b1f31bd8a
 }
