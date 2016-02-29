@@ -6,4 +6,8 @@ Feb 17, 1602-1634: Did some TDD in class. Our requirement was board initializati
 
 Feb 20, 1220-1317: Added print function to board class. Changed chars to strings for visual formatting purposes. Updated the repo.
 
+<<<<<<< HEAD
 Feb 26, 1726-2148: Fixed input issue(s) (there had been a 'cin >> input;' that should have been 'getline(cin, input);' that we missed when we decided to use the getline function for input) and it is [hopefully] now idiot-proof. We'll either need a village idiot or a kitten who thinks walking across a keyboard is the greatest thing since catching laser dots in order to fully test that though. All current tests currently pass. Need to set up a time to meet with DH next week.
+=======
+Feb 23, 1134-1351: PP work on a function to read input for setting the board to make sure it's valid. Made a function to test if a ship is in a location where user is trying to set another ship (testing for overlap). Wrote two tests for the overlap function. Will write function to actually place ships another day.
+>>>>>>> f9faa63662b0c86a11129e940bdc2f4b1f31bd8a

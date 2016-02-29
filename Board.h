@@ -31,9 +31,15 @@ using std::getline;
 class board
 {
 	public:
+<<<<<<< HEAD
 		// string for visual formatting of board
 		vector<vector<string>> waves; // hides ships
 		vector<vector<string>> myWaters; // with ships
+=======
+		vector<vector<string>> waves; // string for visual formatting of board
+		vector<vector<string>> myWaters;
+		//int xCoord, yCoord;
+>>>>>>> f9faa63662b0c86a11129e940bdc2f4b1f31bd8a
 
 	public:
 		// ctor
@@ -44,6 +50,7 @@ class board
 		// documentation with implementation
 		~board();
 
+<<<<<<< HEAD
 		// intro
 		// documentation with implementation
 		const void intro();
@@ -73,6 +80,17 @@ class board
 
 	private:
 		bool secondC = false; // secondC to keep track of 2nd cruiser in setup
+=======
+		void intro();
+		void start();
+		void setBoard(int);
+		bool isShip(int, int);
+		void printBoard();
+
+	private:
+		bool hit;
+		int x, y;
+>>>>>>> f9faa63662b0c86a11129e940bdc2f4b1f31bd8a
 };
 
 #endif
