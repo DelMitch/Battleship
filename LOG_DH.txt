@@ -12,7 +12,7 @@ Presentation.
 No work done
 
 2/23/2016-
-CATCH is hard to use with psuedo-gui or proper gui stuff or arrays. Wrote an isShip function for use in placing ships and determining hits along with a test. Also started work on board setup functions. Did pair programming work to develop these. Partner push stuff to Git.
+CATCH is hard to use with psuedo-gui or proper gui stuff or arrays. Wrote an isShip function for use in placing ships and determining hits along with a test. Also started work on board setup functions. Did pair programming work to develop these. Partner pushed stuff to Git.
 
 2/24/2016-
 More pair programming in class... it seems like more that a 20% speed lost. Maybe in part to design discussion at the same time. I'm not sure battleship is the best way to demonstrate these practices, maybe another project will be better. Would like to do some solo work and then pass to partner for review to compare.
@@ -21,4 +21,10 @@ More pair programming in class... it seems like more that a 20% speed lost. Mayb
 I hate being sick... makes working hard to imposible
 
 2/26/2016-
-Presentation prep, reviewed partner's code looks ok... though that maybe the cold talking. 
+Presentation prep, reviewed partner's code looks ok... though that maybe the cold talking.
+
+2/27-3/2/2016-
+Work? whats that?
+
+3/3/2016-
+More pair programming and reviewing code... I feel freaking useless for a fair portion of the part were watching I'm watching, yes I help some times but others I'm just waiting... anyway we're mostly done. Final testing, clean up and documentation left. Code complies on other systems... the GNU GCC complier I have doesn't like stoi in the <string> library. At least my other compiler recognizes it.
