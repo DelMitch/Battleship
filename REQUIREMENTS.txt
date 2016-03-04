@@ -1,1 +1,27 @@
 -- board object, two-dimensional vector of strings forming a 10 by 10 grid, init with " ~" (because it looks like water, the space is there for visual formatting of the board)
+
+-- each board object contains 2 boards: one to hold ships and one to hide the ships from the opponent
+
+-- users must be able to place ships in board
+
+-- users must not be able to scroll up to see opponent's board setup
+
+-- input handling must be robust (there's a kitten walking on the keyboard)
+
+-- X's must show on board the opponent sees to indicate a hit, O's for a miss
+
+-- must be able to print both boards in a board object
+
+-- users must be notified of hit, miss, and sink
+
+-- must display rules, cannot assume they know the game but will assume that they read and understand English
+
+-- ships cannot be allowed to overlap
+
+-- ships cannot be either partially or fully out of bounds
+
+-- must be winnable; there must be a victor
+
+-- must be 5 ships: carrier (5), battleship (4), cruiser (3), submarine (3), destroyer (2)
+
+-- must be able to differentiate between cruiser and submarine
