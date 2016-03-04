@@ -1,7 +1,7 @@
 // board.cpp
 // Dain Harmon
 // Addeline Mitchell
-// Mar 1, 2016
+// Mar 4, 2016
 //
 // Battleship Project
 // Group 7
@@ -34,8 +34,20 @@ board::board()
 board::~board()
 {}
 
-board play1;
-board play2;
+board play1, play2;
+
+// clear
+// prints 300 new lines, alternative to [system("cls");]
+// used to prevent cheating via scrolling, unfortunately
+// the limitations of this method are such that the users
+// can simply change the buffer size of the console by
+// right-clicking the title bar and changing the setting
+// in the properties menu to render this useless
+const void board::clear()
+{
+	for (int i = 0; i < 30; ++i) // angst
+	{ cout << "\n\n\n\n\n\n\n\n\n" << endl; }
+}
 
 // intro
 // introduces game to players, shows rules
@@ -48,7 +60,7 @@ const void board::intro()
 		<< "  |    |  _/ /  /_\\  \\|    |      |    |   |    |     |    __)_ \\_____  \\/    ~    \\   ||     ___/\n"
 		<< "  |    |   \\/    |    \\    |      |    |   |    |___  |        \\/        \\    Y    /   ||    |\n"
 		<< "  |______  /\\____|__  /____|      |____|   |_______ \\/_______  /_______  /\\___|_  /|___||____|\n"
-		<< "         \\/          \\/                            \\/        \\/        \\/       \\/\n" << endl;
+		<< "         \\/         \\/                             \\/        \\/        \\/       \\/\n" << endl;
 
 	cout << "\t                                      |__\n"
 		<< "\t                                      |\\/\n"
@@ -58,22 +70,19 @@ const void board::intro()
 		<< "\t                            _/|     _ /|-++'\n"
 		<< "\t                        +  +--|    |--|--|_ |-\n"
 		<< "\t                     { /|__|  |/\\_ _|  |--- |||__/'\n"
-		<< "\t                    +---------------___[}-_===_.'____                  /\\\n"
-		<< "\t                ____`-' ||___-{]_| _[}-  |     |_[___\==--              \\/   _\n"
-		<< "\t __..._____--==/___]_|__|_____________________________[___\ == --____,------' .7\n"
+		<< "\t                    +---------------___[}-_===_.'____                   /\\\n"
+		<< "\t                ____`-' ||___-{]_| _[}-  |     |_[___\\==--              \\/   _\n"
+		<< "\t __..._____--==/___]_|__|_____________________________[___\\ == --____,------' .7\n"
 		<< "\t|                                                                    BB - 64 /'\n"
 		<< "\t \\__________________________________________________________________________|'" << endl;
 
 	cout << "\n\n\n\n Press ENTER to continue...";
 	getchar();
 	
-	system("cls");
-	
 	cout << "\n\n Glad you could make it, Captains.\n" << endl;
 
-	cout << " The two of you have been selected to participate in an Experimental Training Program.\n" << endl;
-
-	cout << endl;
+	cout << " The two of you have been selected to participate "
+		 << "in an Experimental Training Program.\n" << endl << endl;
 
 	cout << " Tactical Brief:\n"
 		<< "     A Lieutenant will be assigned to each of you, they will keep you updated on the\n"
@@ -94,16 +103,15 @@ const void board::intro()
 		<< "     blind; you won't know where your oppenent's ships are until you hit them.\n"
 		<< "     Whoever sinks all five of their opponent's ships first will be the Victor.\n" << endl;
 
-	cout << "\n\n\n Press ENTER to continue...";
+	cout << "\n\n\n\n Press ENTER to continue...";
 	getchar();
 
-	system("cls");
+	clear(); // for convenience
 }
 
 // start
 // initiates the very start of the game
-// standing in for 'main' right now
-const void board::start() // this is working fine, just need to include function call at the end to begin the game
+const void board::start()
 {
 	string response;
 	bool isGood = false;
@@ -112,25 +120,27 @@ const void board::start() // this is working fine, just need to include function
 
 	do
 	{
-		bool reset = false, correct = false;
-		cout << "\n Requesting SETUP for CAPTAIN HONG.\n" << endl;
-		cout << " To RESTART at any time during setup: R\n" << endl;
+		bool reset = false;
 
-		play1.printWaters1();
+		cout << "\n LIEUTENANT RED requesting SETUP for CAPTAIN HONG.\n" << endl;
+		cout << " To RESTART at any time during setup: R\n\n\n\n\n\n\n\n" << endl;
+
+		// PLAYER 1 sets their ships
+		play1.printWaters();
 		play1.setBoard(5);
-		play1.printWaters1();
+		play1.printWaters();
 
 		play1.setBoard(4);
-		play1.printWaters1();
+		play1.printWaters();
 
 		play1.setBoard(3);
-		play1.printWaters1();
+		play1.printWaters();
 
 		play1.setBoard(3);
-		play1.printWaters1();
+		play1.printWaters();
 
 		play1.setBoard(2);
-		play1.printWaters1();
+		play1.printWaters();
 
 		do // confirms board with PLAYER 1
 		{
@@ -138,54 +148,52 @@ const void board::start() // this is working fine, just need to include function
 			getline(cin, response);
 			if (response[0] == 'y' || response[0] == 'Y')
 			{
-				correct = true;
 				isGood = true;
 				break;
 			}
 			else if (response[0] == 'n' || response[0] == 'N')
 			{
-				correct = true;
 				reset = true;
 				play1.resetWaters();
-				system("cls");
+				clear(); // for convenience
 			}
 			else { cout << "\n\n REPEAT:" << endl; }
-		}
-		while (!reset);
-	}
-	while (!isGood);
+		}while (!reset);
+	}while (!isGood);
 
-	system("cls"); // this is so that player 2 can't cheat by scrolling up
+	clear(); // this is so that PLAYER 2 can't cheat by scrolling up
 
-	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t\tPASS INTERFACE TO OTHER CAPTAIN" << endl;
+	cout << "\t\t\tPASS INTERFACE TO OTHER CAPTAIN" << endl;
 	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Press ENTER to continue...";
 	getchar();
 
-	system("cls"); // will try to find something better that will work on all (most?) systems
+	clear(); // for convenience
 
 	isGood = false; // reset to false
 
 	do
 	{
-		bool reset2 = false, correct2 = false;
-		cout << "\n Requesting SETUP for CAPTAIN CHONG.\n" << endl;
-		cout << " To restart at any time during setup: R\n" << endl;
+		bool reset2 = false;
 
-		play2.printWaters2();
+		cout << "\n LIEUTENANT BLUE requesting SETUP for CAPTAIN CHONG.\n" << endl;
+		cout << " To restart at any time during setup: R\n\n\n\n\n\n\n\n" << endl;
+
+		// PLAYER 2 sets their ships
+		play2.printWaters();
 		play2.setBoard(5);
-		play2.printWaters2();
+		play2.printWaters();
 		
 		play2.setBoard(4);
-		play2.printWaters2();
+		play2.printWaters();
 		
 		play2.setBoard(3);
-		play2.printWaters2();
+		play2.printWaters();
 		
 		play2.setBoard(3);
-		play2.printWaters2();
+		play2.printWaters();
 		
 		play2.setBoard(2);
-		play2.printWaters2();
+		play2.printWaters();
 
 		do // confirms board with PLAYER 2
 		{
@@ -193,24 +201,25 @@ const void board::start() // this is working fine, just need to include function
 			getline(cin, response);
 			if (response[0] == 'y' || response[0] == 'Y')
 			{
-				correct2 = true;
 				isGood = true;
 				break;
 			}
 			else if (response[0] == 'n' || response[0] == 'N')
 			{
-				correct2 = true;
 				reset2 = true;
 				play2.resetWaters();
-				system("cls");
+				clear(); // for convenience
 			}
 			else { cout << "\n\n REPEAT:" << endl; }
-		}
-		while (!reset2);
-	}
-	while (!isGood);
+		}while (!reset2);
+	}while (!isGood);
 
-	// start game //
+	clear(); // this is so that PLAYER 1 can't cheat by scrolling up
+
+	cout << " -- WAR SIMLULATION INITIATED --" << endl;
+	cout << "\n\n\n\n\n\n\n\n\n\n";
+
+	fireMissile1(); // START GAME
 }
 
 
@@ -219,6 +228,7 @@ const void board::start() // this is working fine, just need to include function
 const void board::setBoard(const int& shipSize) // unless we find any bugs, this is golden
 {
 	bool isSet = false;
+
 	do
 	{
 		int row, col;
@@ -255,6 +265,7 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 		{
 			cout << "\n X-Coordinate: ";
 			getline(cin, input);
+
 			if (input[0] == 'r' || input[0] == 'R') // checks for r
 			{
 				restart = true;
@@ -263,6 +274,7 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 			else if (isdigit(input[0])) // attempts conversion if digit found
 			{
 				col = stoi(input);
+
 				if (col < 0 || col >= 10)
 				{
 					cout << "\n '" << input << "' is INVALID, SIR. Try Again." << endl;
@@ -271,14 +283,13 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 				}
 				break; // get out of this loop and use the value
 			}
-			else // sets row OOB otherwise
+			else // row OOB otherwise
 			{
 				cout << "\n '" << input << "' is INVALID, SIR. Try Again." << endl;
 				restart = true;
 				break;
 			}
-		}
-		while (!restart);
+		}while (!restart);
 
 		if (!restart) // request y-coordinate (row)
 		{
@@ -286,6 +297,7 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 			{
 				cout << " Y-Coordinate: ";
 				getline(cin, input);
+
 				if (input[0] == 'r' || input[0] == 'R') // checks for r
 				{
 					restart = true;
@@ -294,6 +306,7 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 				else if (isdigit(input[0])) // attempts conversion if digit found
 				{
 					row = stoi(input);
+
 					if (row < 0 || row >= 10)
 					{
 						cout << "\n '" << input << "' is INVALID, SIR. Try Again." << endl;
@@ -302,14 +315,13 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 					}
 					break; // get out of this loop and use the value
 				}
-				else // sets col OOB otherwise
+				else // col OOB otherwise
 				{
 					cout << "\n '" << input << "' is INVALID, SIR. Try Again." << endl;
 					restart = true;
 					break;
 				}
-			}
-			while (!restart);
+			}while (!restart);
 		}
 		
 		if (!restart) // request orientation
@@ -318,6 +330,7 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 			{
 				cout << "\n Should orientation be HORIZONTAL or VERTICAL, SIR? (H or V): ";
 				getline(cin, orient);
+
 				if (orient[0] == 'r' || orient[0] == 'R')
 				{
 					restart = true;
@@ -345,8 +358,7 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 						break;
 					}
 				}
-			}
-			while (!valid); // allows orientation if not OOB
+			}while (!valid); // allows orientation if not OOB
 		}
 
 		if (!restart)
@@ -367,6 +379,7 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 					{ restart = true; } // one that has already been placed before placing it
 				}
 			}
+
 			if (restart == true) // if ship would overlap
 			{ cout << "\n You cannot place your ship there, SIR.\n" << endl; }
 		}
@@ -374,6 +387,7 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 		if (!restart)
 		{
 			string boat;
+
 			switch (shipSize) // so that the ships can be identified when sunk
 			{
 				case 5:
@@ -388,7 +402,7 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 					if (secondC == false)
 					{
 						boat = " c";
-						secondC = true; // for next cruiser
+						secondC = true; // for next ship of size 3
 					}
 					else
 					{
@@ -410,17 +424,18 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 			{
 				for (int i = 0; i < shipSize; ++i) // places vertical ships
 				{ myWaters[row + i][col] = boat; }
+
 				isSet = true;
 			}
 			else if (orient[0] == 'h' || orient[0] == 'H')
 			{
 				for (int ii = 0; ii < shipSize; ++ii) // places horizontal ships
 				{ myWaters[row][col + ii] = boat; }
+
 				isSet = true;
 			}
 		}
-	}
-	while (!isSet);
+	}while (!isSet);
 }
 
 
@@ -435,67 +450,47 @@ const bool board::isShip(const int& x, const int& y)
 }
 
 
-// printWaves1, printWaters1, printWaves2, printWaters2
-// print functions for boards holding ships & boards hiding ships
-const void board::printWaves1() // need to figure out all the places to call this
+// printWaves, printWaters
+// print functions for board holding ships & board hiding ships
+const void board::printWaves()
 {
 	cout << "\n       0 1 2 3 4 5 6 7 8 9" << endl;
 	cout << "      _____________________" << endl;
+
 	for (int i = 0; i < 10; ++i)
 	{
 		cout << "  " << i << "  |";
+
 		for (int ii = 0; ii < 10; ++ii)
-		{ cout << play1.waves[i][ii]; }
+		{ cout << waves[i][ii]; }
+
 		cout << " |" << endl;
 	}
+
 	cout << "      ---------------------" << endl;
 }
 
-const void board::printWaves2() // need to figure out all the places to call this
+const void board::printWaters()
 {
 	cout << "\n       0 1 2 3 4 5 6 7 8 9" << endl;
 	cout << "      _____________________" << endl;
-	for (int i = 0; i < 10; ++i)
-	{
-		cout << "  " << i << "  |";
-		for (int ii = 0; ii < 10; ++ii)
-		{ cout << play2.waves[i][ii]; }
-		cout << " |" << endl;
-	}
-	cout << "      ---------------------" << endl;
-}
 
-const void board::printWaters1() // need to figure out all the places to call this
-{
-	cout << "\n       0 1 2 3 4 5 6 7 8 9" << endl;
-	cout << "      _____________________" << endl;
 	for (int i = 0; i < 10; ++i)
 	{
 		cout << "  " << i << "  |";
-		for (int ii = 0; ii < 10; ++ii)
-		{ cout << play1.myWaters[i][ii]; }
-		cout << " |" << endl;
-	}
-	cout << "      ---------------------" << endl;
-}
 
-const void board::printWaters2() // need to figure out all the places to call this
-{
-	cout << "\n       0 1 2 3 4 5 6 7 8 9" << endl;
-	cout << "      _____________________" << endl;
-	for (int i = 0; i < 10; ++i)
-	{
-		cout << "  " << i << "  |";
 		for (int ii = 0; ii < 10; ++ii)
-		{ cout << play2.myWaters[i][ii]; }
+		{ cout << myWaters[i][ii]; }
+
 		cout << " |" << endl;
 	}
+
 	cout << "      ---------------------" << endl;
 }
 
 
 // resetWaters
-// clear ships from board, replace with 'water'
+// clear all marks from boards, replace with 'water'
 const void board::resetWaters()
 {
 	for (int i = 0; i < 10; ++i)
@@ -503,14 +498,479 @@ const void board::resetWaters()
 		for (int ii = 0; ii < 10; ++ii)
 		{
 			if (myWaters[i][ii] != " ~")
-			{ myWaters[i][ii] = " ~"; }
+			{
+				myWaters[i][ii] = " ~";
+				waves[i][ii] = " ~";
+			}
 		}
 	}
 }
 
 
-// hit or miss function needed //
+// fireMissile1, fireMissile2
+// requests coordinates from play1 and play2 respectively, then
+// launches missile when input is valid and verifies hit or miss
+const void board::fireMissile1()
+{
+	string input;
+	bool shoot = false;
+	int col, row;
 
-// function to identify a sunk ship needed //
+	do
+	{
+		bool restart = false;
+		do // request x-coordinate (column)
+		{
+			cout << "\n L.T. RED: CAPTAIN HONG -- fire when ready, SIR." << endl;
 
-// winstate function needed //
+			play2.printWaves();
+
+			cout << "\n X-Coordinate: ";
+
+			getline(cin, input);
+
+			if (isdigit(input[0])) // attempts conversion if digit found
+			{
+				col = stoi(input);
+
+				if (col < 0 || col >= 10)
+				{
+					cout << "\n '" << input << "' is INVALID, SIR. Try Again.\n" << endl;
+
+					restart = true; // start input over
+					break;
+				}
+				break; // get out of this loop and use the value
+			}
+			else // sets row OOB otherwise
+			{
+				cout << "\n '" << input << "' is INVALID, SIR. Try Again.\n" << endl;
+
+				restart = true;
+				break;
+			}
+		}while (!restart);
+
+		if (!restart) // request y-coordinate (row)
+		{
+			do
+			{
+				cout << " Y-Coordinate: ";
+
+				getline(cin, input);
+
+				if (isdigit(input[0])) // attempts conversion if digit found
+				{
+					row = stoi(input);
+
+					if (row < 0 || row >= 10)
+					{
+						cout << "\n '" << input << "' is INVALID, SIR. Try Again.\n" << endl;
+
+						restart = true; // start input over
+						break;
+					}
+					else if (play2.waves[row][col] == " O" || play2.waves[row][col] == " X")
+					{ // if coordinates have already been used
+						cout << "\n Oh Captain, my Captain: a missile has already been fired "
+							 <<"there,\n no need to send another, SIR. Try again.\n" << endl;
+
+						restart = true;
+						break; // start input over
+					}
+					shoot = true; // at this point, both coords are valid, so we can use them
+					break; // get out of this loop and use the value
+				}
+				else // sets col OOB otherwise
+				{
+					cout << "\n '" << input << "' is INVALID, SIR. Try Again.\n" << endl;
+
+					restart = true;
+					break;
+				}
+			}while (!restart);
+		}
+	}while (!shoot);
+
+	if (play2.myWaters[row][col] == " ~") // miss
+	{
+		play2.waves[row][col] = " O";
+		play2.printWaves();
+
+		cout << "\n MISS: no sign of a ship at "
+			 << "those coordinates, SIR.\n\n" << endl;
+	}
+	else if (play2.myWaters[row][col] == " a") // hit aircraft carrier
+	{
+		--carLife2;
+
+		play2.waves[row][col] = " X";
+		play2.printWaves();
+
+		if (carLife2 == 0)
+		{
+			cout << "\n HIT: the wreckage reveals the enemy's "
+				 << "CARRIER has been SUNK, SIR.\n\n" << endl;
+		}
+		else
+		{
+			cout << "\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n" << endl;
+		}
+	}
+	else if (play2.myWaters[row][col] == " b") // hit battleship
+	{
+		--batLife2;
+
+		play2.waves[row][col] = " X";
+		play2.printWaves();
+
+		if (batLife2 == 0)
+		{
+			cout << "\n HIT: the wreckage reveals the enemy's "
+				 << "BATTLESHIP has been SUNK, SIR.\n\n" << endl;
+		}
+		else
+		{
+			cout << "\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n" << endl;
+		}
+	}
+	else if (play2.myWaters[row][col] == " c") // hit cruiser
+	{
+		--cruLife2;
+
+		play2.waves[row][col] = " X";
+		play2.printWaves();
+
+		if (cruLife2 == 0)
+		{
+			cout << "\n HIT: the wreckage reveals the enemy's "
+				 << "CRUISER has been SUNK, SIR.\n\n" << endl;
+		}
+		else
+		{
+			cout << "\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n" << endl;
+		}
+	}
+	else if (play2.myWaters[row][col] == " s") // hit submarine
+	{
+		--subLife2;
+
+		play2.waves[row][col] = " X";
+		play2.printWaves();
+
+		if (subLife2 == 0)
+		{
+			cout << "\n HIT: the wreckage reveals the enemy's "
+				 << "SUBMARINE has been SUNK, SIR.\n\n" << endl;
+		}
+		else
+		{
+			cout << "\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n" << endl;
+		}
+	}
+	else if (play2.myWaters[row][col] == " d") // hit destroyer
+	{
+		--desLife2;
+
+		play2.waves[row][col] = " X";
+		play2.printWaves();
+
+		if (desLife2 == 0)
+		{
+			cout << "\n HIT: the wreckage reveals the enemy's "
+				 << "DESTROYER has been SUNK, SIR.\n\n" << endl;
+		}
+		else
+		{
+			cout << "\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n" << endl;
+		}
+	}
+
+	if (play2.allSunk()) // check for win state
+	{ winState(true); }
+	else
+	{
+		cout << "\n\n\n\n Press ENTER to continue...";
+		getchar();
+
+		fireMissile2();
+	}
+}
+
+const void board::fireMissile2() // for player2 to hit player1's board
+{
+	string input;
+	bool shoot = false;
+	int col, row;
+
+	do
+	{
+		bool restart = false;
+		do // request x-coordinate (column)
+		{
+			cout << "\n L.T. BLUE: CAPTAIN CHONG -- fire when ready, SIR." << endl;
+
+			play1.printWaves();
+
+			cout << "\n X-Coordinate: ";
+
+			getline(cin, input);
+
+			if (isdigit(input[0])) // attempts conversion if digit found
+			{
+				col = stoi(input);
+
+				if (col < 0 || col >= 10)
+				{
+					cout << "\n '" << input << "' is INVALID, SIR. Try Again.\n" << endl;
+
+					restart = true; // start input over
+					break;
+				}
+				break; // get out of this loop and use the value
+			}
+			else // sets row OOB otherwise
+			{
+				cout << "\n '" << input << "' is INVALID, SIR. Try Again.\n" << endl;
+
+				restart = true;
+				break;
+			}
+		}while (!restart);
+
+		if (!restart) // request y-coordinate (row)
+		{
+			do
+			{
+				cout << " Y-Coordinate: ";
+
+				getline(cin, input);
+
+				if (isdigit(input[0])) // attempts conversion if digit found
+				{
+					row = stoi(input);
+
+					if (row < 0 || row >= 10)
+					{
+						cout << "\n '" << input << "' is INVALID, SIR. Try Again.\n" << endl;
+
+						restart = true; // start input over
+						break;
+					}
+					else if (play1.waves[row][col] == " O" || play1.waves[row][col] == " X")
+					{ // if coordinates have already been used
+						cout << "\n Oh Captain, my Captain: a missile has already been fired "
+							 << "there,\n no need to send another, SIR. Try again.\n" << endl;
+
+						restart = true;
+						break; // start input over
+					}
+					shoot = true; // at this point, both coords are valid, so we can use them
+					break; // get out of this loop and use the value
+				}
+				else // sets col OOB otherwise
+				{
+					cout << "\n '" << input << "' is INVALID, SIR. Try Again.\n" << endl;
+
+					restart = true;
+					break;
+				}
+			}while (!restart);
+		}
+	}while (!shoot);
+
+	if (play1.myWaters[row][col] == " ~") // miss
+	{
+		play1.waves[row][col] = " O";
+		play1.printWaves();
+
+		cout << "\n MISS: no sign of a ship at "
+			 << "those coordinates, SIR.\n\n" << endl;
+	}
+	else if (play1.myWaters[row][col] == " a") // hit aircraft carrier
+	{
+		--carLife1;
+
+		play1.waves[row][col] = " X";
+		play1.printWaves();
+
+		if (carLife1 == 0)
+		{
+			cout << "\n HIT: the wreckage reveals the enemy's "
+				 << "CARRIER has been SUNK, SIR.\n\n" << endl;
+		}
+		else
+		{
+			cout << "\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n" << endl;
+		}
+	}
+	else if (play1.myWaters[row][col] == " b") // hit battleship
+	{
+		--batLife1;
+
+		play1.waves[row][col] = " X";
+		play1.printWaves();
+
+		if (batLife1 == 0)
+		{
+			cout << "\n HIT: the wreckage reveals the enemy's "
+				 << "BATTLESHIP has been SUNK, SIR.\n\n" << endl;
+		}
+		else
+		{
+			cout << "\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n" << endl;
+		}
+	}
+	else if (play1.myWaters[row][col] == " c") // hit cruiser
+	{
+		--cruLife1;
+
+		play1.waves[row][col] = " X";
+		play1.printWaves();
+
+		if (cruLife1 == 0)
+		{
+			cout << "\n HIT: the wreckage reveals the enemy's "
+				 << "CRUISER has been SUNK, SIR.\n\n" << endl;
+		}
+		else
+		{
+			cout << "\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n" << endl;
+		}
+	}
+	else if (play1.myWaters[row][col] == " s") // hit submarine
+	{
+		--subLife1;
+
+		play1.waves[row][col] = " X";
+		play1.printWaves();
+
+		if (subLife1 == 0)
+		{
+			cout << "\n HIT: the wreckage reveals the enemy's "
+				 << "SUBMARINE has been SUNK, SIR.\n\n" << endl;
+		}
+		else
+		{
+			cout << "\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n" << endl;
+		}
+	}
+	else if (play1.myWaters[row][col] == " d") // hit destroyer
+	{
+		--desLife1;
+
+		play1.waves[row][col] = " X";
+		play1.printWaves();
+
+		if (desLife1 == 0)
+		{
+			cout << "\n HIT: the wreckage reveals the enemy's "
+				 << "DESTROYER has been SUNK, SIR.\n\n" << endl;
+		}
+		else
+		{
+			cout << "\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n" << endl;
+		}
+	}
+
+	if (play1.allSunk()) // ccheck for win state
+	{ winState(false); }
+	else
+	{
+		cout << "\n\n\n\n Press ENTER to continue...";
+		getchar();
+
+		fireMissile1();
+	}
+}
+
+
+// allSunk
+// checks whether or not there are 17 X's in the board
+const bool board::allSunk()
+{
+	int hits = 0;
+
+	for (int i = 0; i < 10; ++i)
+	{
+		for (int ii = 0; ii < 10; ++ii)
+		{
+			if (waves[i][ii] == " X")
+			{ ++hits; }
+		}
+	}
+
+	if (hits == 17) { return true; }
+
+	return false;
+}
+
+
+// winState
+// declares winner, resets boards and ships if players opt for a rematch
+const void board::winState(bool play1Win)
+{
+	string response;
+	
+	if (play1Win)
+	{
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\t\t\tMISSION SUCCESS!\n\n"
+			 << "\t\t\tCONGRATULATIONS, CAPTAIN HONG!\n\n\n\n\n\n\n\n\n\n\n\n";
+		// insert celebratory ascii art
+	}
+	else
+	{
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\t\t\tMISSION SUCCESS!\n\n"
+			 << "\t\t\tCONGRATULATIONS, CAPTAIN CHONG!\n\n\n\n\n\n\n\n\n\n\n\n";
+		// insert celebratory ascii art
+	}
+
+	cout << "\n Play Again? (Y or N): ";
+
+	getline(cin, response);
+
+	if (response[0] == 'y' || response[0] == 'Y')
+	{
+		// reset boards
+		play1.resetWaters();
+		play2.resetWaters();
+
+		// reset player1's ships
+		carLife1 = 5;
+		batLife1 = 4;
+		cruLife1 = 3;
+		subLife1 = 3;
+		desLife1 = 2;
+
+		// reset player2's ships
+		carLife2 = 5;
+		batLife2 = 4;
+		cruLife2 = 3;
+		subLife2 = 3;
+		desLife2 = 2;
+
+		clear(); // for convenience
+
+		start(); // new game
+	}
+	else
+	{ exit(1); }
+}
+
+
+/*int main()
+{
+	play1.start();
+
+	return 0;
+}*/
