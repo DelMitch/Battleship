@@ -1,7 +1,7 @@
 // Board.h
 // Dain Harmon
 // Addeline Mitchell
-// Mar 1, 2016
+// Mar 4, 2016
 //
 // Battleship Project
 // Group 7
@@ -31,9 +31,9 @@ using std::getline;
 class board
 {
 	public:
-		// string for visual formatting of board
+		// 'string' used for visual formatting purposes
 		vector<vector<string>> waves; // hides ships
-		vector<vector<string>> myWaters; // with ships
+		vector<vector<string>> myWaters; // holds ships
 
 	public:
 		// ctor
@@ -43,6 +43,10 @@ class board
 		// dctor
 		// documentation with implementation
 		~board();
+
+		// clear
+		// documentation with implementation
+		const void clear();
 
 		// intro
 		// documentation with implementation
@@ -60,19 +64,36 @@ class board
 		// documentation with implementation
 		const bool isShip(const int&, const int&);
 
-		// printWaves1, printWaters1, printWaves2, printWaters2
+		// printWaves, printWaters
 		// documentation with implementation
-		const void printWaves1();
-		const void printWaters1(); // following the WET (Write Everything Twice)
-		const void printWaves2();  // principle (horrible pun intended)
-		const void printWaters2();
+		const void printWaves();
+		const void printWaters();
 
 		// resetWaters
 		// documentation with implementation
 		const void resetWaters();
 
+		// fireMissile1, fireMissile2
+		// documentation with implementation
+		const void fireMissile1();
+		const void fireMissile2();
+
+		// allSunk
+		// documentation with implementation
+		const bool allSunk();
+
+		// winState
+		// documentation with implementation
+		const void winState(bool);
+
 	private:
-		bool secondC = false; // secondC to keep track of 2nd cruiser in setup
+		bool secondC = false; // to keep track of 2nd ship of length 3 in setup
+
+		// player1's ships
+		int carLife1 = 5, batLife1 = 4, cruLife1 = 3, subLife1 = 3, desLife1 = 2;
+
+		// player2's ships
+		int carLife2 = 5, batLife2 = 4, cruLife2 = 3, subLife2 = 3, desLife2 = 2;
 };
 
 #endif
