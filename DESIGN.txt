@@ -1,1 +1,11 @@
-- placeholder line, remove when we actually put something here -
+Design Document for Battleship program developed by Dain Harmon and Addeline Mitchell
+
+The program will be a c++ program that allows two people to play battleship on a signle computer using the console.
+
+The Program will consist of a single class and main in two files that will hold each player's board. Each player will have their own board. Boards will be 10x10.
+
+Each player will have 5 ships, Carrier (5), Battleship (4), Crusier (3), Submarine (3), Destroyer (2). The game will end when all of a player's ships are sunk.
+
+Commands will be inputed though the console.
+
+Each function will handle it's own console io.
