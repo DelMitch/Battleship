@@ -15,7 +15,7 @@ No work done
 CATCH is hard to use with psuedo-gui or proper gui stuff or arrays. Wrote an isShip function for use in placing ships and determining hits along with a test. Also started work on board setup functions. Did pair programming work to develop these. Partner pushed stuff to Git.
 
 2/24/2016-
-More pair programming in class... it seems like more that a 20% speed lost. Maybe in part to design discussion at the same time. I'm not sure battleship is the best way to demonstrate these practices, maybe another project will be better. Would like to do some solo work and then pass to partner for review to compare.
+More pair programming in class... it seems like more than a 20% speed lost. Maybe in part to design discussion at the same time. I'm not sure battleship is the best way to demonstrate these practices, maybe another project will be better. Would like to do some solo work and then pass to partner for review to compare.
 
 2/25/2016-
 I hate being sick... makes working hard to imposible
@@ -28,3 +28,12 @@ Work? whats that?
 
 3/3/2016-
 More pair programming and reviewing code... I feel freaking useless for a fair portion of the part were watching I'm watching, yes I help some times but others I'm just waiting... anyway we're mostly done. Final testing, clean up and documentation left. Code complies on other systems... the GNU GCC complier I have doesn't like stoi in the <string> library. At least my other compiler recognizes it.
+
+3/4/2016
+Presentation
+
+3/5-9/2016
+Nothing doing... I am wondering about how pair programming intereacts with work focus. Being interupted when you're in a productive mode is noted as bad for productivity. Especially becasue getting back into that "zone" can be hard... does pair programming present lesser interuptions? Is it integrated into the work flow well enough?
+
+3/10/2016
+More work and stuff! Writing documentation and doing final tests.
