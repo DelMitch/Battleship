@@ -37,3 +37,5 @@ Nothing doing... I am wondering about how pair programming intereacts with work 
 
 3/10/2016
 More work and stuff! Writing documentation and doing final tests.
+
+Looks like were done... I hope. May come back and fiddle with some of the code, but it works and meets spec so sometimes it's best not to fix what isn't broken.
