@@ -189,7 +189,7 @@ void fireMissile(board)
 // creation test //
 TEST_CASE("Board Initialization", "[board]")
 {
-	//play.start(); // uncomment to test full game
+	play.start(); // uncomment to test full game
 
 	for (int i = 0; i < 10; ++i)
 	{
@@ -221,7 +221,8 @@ TEST_CASE("Ships Not Overlapping", "[ships]")
 // test for removal of all ships //
 TEST_CASE("Reset Board", "[board]")
 {
-	play.resetWaters();
+	//play.resetWaters(); // when uncommented and run with board
+						// source and header, will start game
 
 	for (int i = 0; i < 10; ++i)
 	{
