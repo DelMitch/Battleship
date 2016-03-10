@@ -1,0 +1,26 @@
+PREGAME
+
+    Double-click Battleship.exe (look in bin/release/). If error(s) occur, compile and run 'Board.h', 'board.cpp' on your system. If title screen appears to be malformed, right-click on the title bar and then click on 'Properties'. In the 'Layout' tab, set the 'Window Size' to 'width: 100' by 'height: 30'. Check to see that the height of 'Screen Buffer Size' is no more than 'height: 300'. Alternatively, hover over the bottom right corner until a bi-directional arrow shows up, then click and drag the screen so that it is larger.
+
+
+INTRODUCTION
+
+    The game will display a title screen and upon pressing the [ENTER] key on the keyboard, a general overview of the game and its rules will be displayed.
+
+
+BOARD SETUP
+
+    Upon pressing [ENTER] again, setup will be launched for Player 1, who is referred to as Captain Hong (hong is the Korean word for 'red') and is prompted by a 'Lieutenant Red'. After Player 1 has setup their board and have give positive confirmation, setup launches for Player 2, who is referred to as Captain Chong (chong is the Korean word for 'blue') and is prompted by 'Lieutenant Blue'.
+
+    Users will be prompted to place ships starting with the largest and ending with the smallest, this order cannot be changed. When placing a ship, users will be prompted for an x-coordinate and a y-coordinate. Both the x- and y-coordinate must be an integer from 0 to 9, inclusive. The x-coordinate is chosen from the integers above the board while the y-coordinate is chosen from the integers to the left of the board. The coordinates inputted will be for the head of the ship. The user will be prompted to make the ship either horizontal or vertical. Depending on whether the user chooses horizontal or vertical, the rest of the ship will extend rightward or downward, respectively.
+
+    In the case that the ship currently being placed will overlap with a previously placed ship or the ship would be partially out of bounds, the user will be notified and then prompted for a new location for the ship they are currently trying to place.
+
+
+GAMEPLAY
+
+    Player 1 (Hong/Red) will have the first turn. Players will alternate, neither is allowed to shoot multiple times in a row. On each player's turn, they will be prompted for coordinates at which to fire a missile on the board belonging to the other player.
+
+    Both the x- and y-coordinate must be an integer from 0 to 9, inclusive. After their turn, each player will be shown the results of their efforts. In the even of a hit, an 'X' will appear on the board at those coordinates; in the event of a miss, an 'O' will appear on the board at those coordinates. The [ENTER] key must be pressed to move on to the other players next turn.
+
+    The two players will continue to fire at each other's boards until one of them sinks all of their opponent's ships, at which point the game is over and the winner is declared. Users will be given the option to play again.
