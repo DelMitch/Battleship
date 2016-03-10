@@ -17,12 +17,12 @@
 // opponent sees
 board::board()
 {
-	waves.resize(10); // do not remove
+	waves.resize(10); // set to proper size
 	myWaters.resize(10);
 	for (int i = 0; i < 10; ++i)
 	{
 		for (int ii = 0; ii < 10; ++ii)
-		{
+		{// populate with 'water'
 			waves[i].push_back(" ~");
 			myWaters[i].push_back(" ~");
 		}
@@ -45,7 +45,7 @@ board play1, play2;
 // in the properties menu to render this useless
 const void board::clear()
 {
-	for (int i = 0; i < 30; ++i) // angst
+	for (int i = 0; i < 30; ++i)
 	{ cout << "\n\n\n\n\n\n\n\n\n" << endl; }
 }
 
@@ -123,7 +123,7 @@ const void board::start()
 		bool reset = false;
 
 		cout << "\n LIEUTENANT RED requesting SETUP for CAPTAIN HONG.\n" << endl;
-		cout << " To RESTART at any time during setup: R\n\n\n\n\n\n\n\n" << endl;
+		cout << "\n To RESTART at any time during setup: R\n\n\n" << endl;
 
 		// PLAYER 1 sets their ships
 		play1.printWaters();
@@ -144,7 +144,7 @@ const void board::start()
 
 		do // confirms board with PLAYER 1
 		{
-			cout << "\n Requesting CONFIRMATION of locations, SIR? (Y or N): ";
+			cout << "\n\n\n\n\n\n\n Requesting CONFIRMATION of locations, SIR? (Y or N): ";
 			getline(cin, response);
 			if (response[0] == 'y' || response[0] == 'Y')
 			{
@@ -176,7 +176,7 @@ const void board::start()
 		bool reset2 = false;
 
 		cout << "\n LIEUTENANT BLUE requesting SETUP for CAPTAIN CHONG.\n" << endl;
-		cout << " To restart at any time during setup: R\n\n\n\n\n\n\n\n" << endl;
+		cout << "\n To RESTART at any time during setup: R\n\n\n" << endl;
 
 		// PLAYER 2 sets their ships
 		play2.printWaters();
@@ -197,7 +197,7 @@ const void board::start()
 
 		do // confirms board with PLAYER 2
 		{
-			cout << "\n Requesting CONFIRMATION of locations, SIR? (Y or N): ";
+			cout << "\n\n\n\n\n\n\n Requesting CONFIRMATION of locations, SIR? (Y or N): ";
 			getline(cin, response);
 			if (response[0] == 'y' || response[0] == 'Y')
 			{
@@ -217,7 +217,7 @@ const void board::start()
 	clear(); // this is so that PLAYER 1 can't cheat by scrolling up
 
 	cout << " -- WAR SIMLULATION INITIATED --" << endl;
-	cout << "\n\n\n\n\n\n\n\n\n\n";
+	cout << "\n\n\n" << endl;
 
 	fireMissile1(); // START GAME
 }
@@ -228,6 +228,8 @@ const void board::start()
 const void board::setBoard(const int& shipSize) // unless we find any bugs, this is golden
 {
 	bool isSet = false;
+
+	cout << "\n\n" << endl;
 
 	do
 	{
@@ -259,7 +261,7 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 				cout << "\n ABORT MISSION, REPEAT: ABORT MISSION!" << endl;
 				break;
 		}
-		cout << ", SIR? (size " << shipSize << ")" << endl;
+		cout << ", SIR? (size " << shipSize << ")\n" << endl;
 
 		do // request x-coordinate (column)
 		{
@@ -277,7 +279,7 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 
 				if (col < 0 || col >= 10)
 				{
-					cout << "\n '" << input << "' is INVALID, SIR. Try Again." << endl;
+					cout << "\n '" << input << "' is INVALID, SIR. Try Again.\n\n" << endl;
 					restart = true; // start input over
 					break;
 				}
@@ -285,7 +287,7 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 			}
 			else // row OOB otherwise
 			{
-				cout << "\n '" << input << "' is INVALID, SIR. Try Again." << endl;
+				cout << "\n '" << input << "' is INVALID, SIR. Try Again.\n\n" << endl;
 				restart = true;
 				break;
 			}
@@ -309,7 +311,7 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 
 					if (row < 0 || row >= 10)
 					{
-						cout << "\n '" << input << "' is INVALID, SIR. Try Again." << endl;
+						cout << "\n '" << input << "' is INVALID, SIR. Try Again.\n\n" << endl;
 						restart = true; // start input over
 						break;
 					}
@@ -317,7 +319,7 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 				}
 				else // col OOB otherwise
 				{
-					cout << "\n '" << input << "' is INVALID, SIR. Try Again." << endl;
+					cout << "\n '" << input << "' is INVALID, SIR. Try Again.\n\n" << endl;
 					restart = true;
 					break;
 				}
@@ -342,7 +344,7 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 					{ valid = true; }
 					else
 					{
-						cout << "\n That is OUT OF BOUNDS, SIR. Try Again.\n" << endl;
+						cout << "\n That is OUT OF BOUNDS, SIR. Try Again.\n\n" << endl;
 						restart = true;
 						break;
 					}
@@ -353,7 +355,7 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 					{ valid = true; }
 					else
 					{
-						cout << "\n That is OUT OF BOUNDS, SIR. Try Again.\n" << endl;
+						cout << "\n That is OUT OF BOUNDS, SIR. Try Again.\n\n" << endl;
 						restart = true;
 						break;
 					}
@@ -381,7 +383,7 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 			}
 
 			if (restart == true) // if ship would overlap
-			{ cout << "\n You cannot place your ship there, SIR.\n" << endl; }
+			{ cout << "\n You cannot place your ship there, SIR.\n\n" << endl; }
 		}
 
 		if (!restart)
@@ -436,6 +438,8 @@ const void board::setBoard(const int& shipSize) // unless we find any bugs, this
 			}
 		}
 	}while (!isSet);
+
+	cout << "\n\n\n\n Ship has been successfully placed, SIR.\n\n\n" << endl;
 }
 
 
@@ -510,7 +514,8 @@ const void board::resetWaters()
 // fireMissile1, fireMissile2
 // requests coordinates from play1 and play2 respectively, then
 // launches missile when input is valid and verifies hit or miss
-const void board::fireMissile1()
+// note: Out-Of-Bounds abbreviated to OOB
+const void board::fireMissile1() // for player1 to hit player2's board
 {
 	string input;
 	bool shoot = false;
@@ -521,11 +526,11 @@ const void board::fireMissile1()
 		bool restart = false;
 		do // request x-coordinate (column)
 		{
-			cout << "\n L.T. RED: CAPTAIN HONG -- fire when ready, SIR." << endl;
+			cout << "\n\n L.T. RED: CAPTAIN HONG -- fire when ready, SIR.\n\n\n" << endl;
 
 			play2.printWaves();
 
-			cout << "\n X-Coordinate: ";
+			cout << "\n\n\n X-Coordinate: ";
 
 			getline(cin, input);
 
@@ -572,8 +577,7 @@ const void board::fireMissile1()
 					}
 					else if (play2.waves[row][col] == " O" || play2.waves[row][col] == " X")
 					{ // if coordinates have already been used
-						cout << "\n Oh Captain, my Captain: a missile has already been fired "
-							 <<"there,\n no need to send another, SIR. Try again.\n" << endl;
+						cout << "\n\n Oh Captain, my Captain: a missile has already been fired there, SIR." << endl;
 
 						restart = true;
 						break; // start input over
@@ -592,13 +596,15 @@ const void board::fireMissile1()
 		}
 	}while (!shoot);
 
+	cout << "\n\n" << endl;
+
 	if (play2.myWaters[row][col] == " ~") // miss
 	{
 		play2.waves[row][col] = " O";
 		play2.printWaves();
 
-		cout << "\n MISS: no sign of a ship at "
-			 << "those coordinates, SIR.\n\n" << endl;
+		cout << "\n\n\n\n MISS: no sign of a ship at "
+			 << "those coordinates, SIR.\n\n\n" << endl;
 	}
 	else if (play2.myWaters[row][col] == " a") // hit aircraft carrier
 	{
@@ -609,13 +615,13 @@ const void board::fireMissile1()
 
 		if (carLife2 == 0)
 		{
-			cout << "\n HIT: the wreckage reveals the enemy's "
-				 << "CARRIER has been SUNK, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: the wreckage reveals the enemy's "
+				 << "CARRIER has been SUNK, SIR.\n\n\n" << endl;
 		}
 		else
 		{
-			cout << "\n HIT: a ship has been sighted at "
-				 << "those coordinates sir, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n\n" << endl;
 		}
 	}
 	else if (play2.myWaters[row][col] == " b") // hit battleship
@@ -627,13 +633,13 @@ const void board::fireMissile1()
 
 		if (batLife2 == 0)
 		{
-			cout << "\n HIT: the wreckage reveals the enemy's "
-				 << "BATTLESHIP has been SUNK, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: the wreckage reveals the enemy's "
+				 << "BATTLESHIP has been SUNK, SIR.\n\n\n" << endl;
 		}
 		else
 		{
-			cout << "\n HIT: a ship has been sighted at "
-				 << "those coordinates sir, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n\n" << endl;
 		}
 	}
 	else if (play2.myWaters[row][col] == " c") // hit cruiser
@@ -645,13 +651,13 @@ const void board::fireMissile1()
 
 		if (cruLife2 == 0)
 		{
-			cout << "\n HIT: the wreckage reveals the enemy's "
-				 << "CRUISER has been SUNK, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: the wreckage reveals the enemy's "
+				 << "CRUISER has been SUNK, SIR.\n\n\n" << endl;
 		}
 		else
 		{
-			cout << "\n HIT: a ship has been sighted at "
-				 << "those coordinates sir, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n\n" << endl;
 		}
 	}
 	else if (play2.myWaters[row][col] == " s") // hit submarine
@@ -663,13 +669,13 @@ const void board::fireMissile1()
 
 		if (subLife2 == 0)
 		{
-			cout << "\n HIT: the wreckage reveals the enemy's "
-				 << "SUBMARINE has been SUNK, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: the wreckage reveals the enemy's "
+				 << "SUBMARINE has been SUNK, SIR.\n\n\n" << endl;
 		}
 		else
 		{
-			cout << "\n HIT: a ship has been sighted at "
-				 << "those coordinates sir, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n\n" << endl;
 		}
 	}
 	else if (play2.myWaters[row][col] == " d") // hit destroyer
@@ -681,13 +687,13 @@ const void board::fireMissile1()
 
 		if (desLife2 == 0)
 		{
-			cout << "\n HIT: the wreckage reveals the enemy's "
-				 << "DESTROYER has been SUNK, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: the wreckage reveals the enemy's "
+				 << "DESTROYER has been SUNK, SIR.\n\n\n" << endl;
 		}
 		else
 		{
-			cout << "\n HIT: a ship has been sighted at "
-				 << "those coordinates sir, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n\n" << endl;
 		}
 	}
 
@@ -695,8 +701,9 @@ const void board::fireMissile1()
 	{ winState(true); }
 	else
 	{
-		cout << "\n\n\n\n Press ENTER to continue...";
-		getchar();
+		cout << " Press ENTER to continue...";
+		getchar(); // so player can see the results of their efforts
+		cout << "\n\n\n\n\n" << endl;
 
 		fireMissile2();
 	}
@@ -713,11 +720,11 @@ const void board::fireMissile2() // for player2 to hit player1's board
 		bool restart = false;
 		do // request x-coordinate (column)
 		{
-			cout << "\n L.T. BLUE: CAPTAIN CHONG -- fire when ready, SIR." << endl;
+			cout << "\n\n L.T. BLUE: CAPTAIN CHONG -- fire when ready, SIR.\n\n\n" << endl;
 
 			play1.printWaves();
 
-			cout << "\n X-Coordinate: ";
+			cout << "\n\n\n X-Coordinate: ";
 
 			getline(cin, input);
 
@@ -764,8 +771,7 @@ const void board::fireMissile2() // for player2 to hit player1's board
 					}
 					else if (play1.waves[row][col] == " O" || play1.waves[row][col] == " X")
 					{ // if coordinates have already been used
-						cout << "\n Oh Captain, my Captain: a missile has already been fired "
-							 << "there,\n no need to send another, SIR. Try again.\n" << endl;
+						cout << "\n\n Oh Captain, my Captain: a missile has already been fired there, SIR." << endl;
 
 						restart = true;
 						break; // start input over
@@ -784,13 +790,15 @@ const void board::fireMissile2() // for player2 to hit player1's board
 		}
 	}while (!shoot);
 
+	cout << "\n\n" << endl;
+
 	if (play1.myWaters[row][col] == " ~") // miss
 	{
 		play1.waves[row][col] = " O";
 		play1.printWaves();
 
-		cout << "\n MISS: no sign of a ship at "
-			 << "those coordinates, SIR.\n\n" << endl;
+		cout << "\n\n\n\n MISS: no sign of a ship at "
+			 << "those coordinates, SIR.\n\n\n" << endl;
 	}
 	else if (play1.myWaters[row][col] == " a") // hit aircraft carrier
 	{
@@ -801,13 +809,13 @@ const void board::fireMissile2() // for player2 to hit player1's board
 
 		if (carLife1 == 0)
 		{
-			cout << "\n HIT: the wreckage reveals the enemy's "
-				 << "CARRIER has been SUNK, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: the wreckage reveals the enemy's "
+				 << "CARRIER has been SUNK, SIR.\n\n\n" << endl;
 		}
 		else
 		{
-			cout << "\n HIT: a ship has been sighted at "
-				 << "those coordinates sir, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n\n" << endl;
 		}
 	}
 	else if (play1.myWaters[row][col] == " b") // hit battleship
@@ -819,13 +827,13 @@ const void board::fireMissile2() // for player2 to hit player1's board
 
 		if (batLife1 == 0)
 		{
-			cout << "\n HIT: the wreckage reveals the enemy's "
-				 << "BATTLESHIP has been SUNK, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: the wreckage reveals the enemy's "
+				 << "BATTLESHIP has been SUNK, SIR.\n\n\n" << endl;
 		}
 		else
 		{
-			cout << "\n HIT: a ship has been sighted at "
-				 << "those coordinates sir, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n\n" << endl;
 		}
 	}
 	else if (play1.myWaters[row][col] == " c") // hit cruiser
@@ -837,13 +845,13 @@ const void board::fireMissile2() // for player2 to hit player1's board
 
 		if (cruLife1 == 0)
 		{
-			cout << "\n HIT: the wreckage reveals the enemy's "
-				 << "CRUISER has been SUNK, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: the wreckage reveals the enemy's "
+				 << "CRUISER has been SUNK, SIR.\n\n\n" << endl;
 		}
 		else
 		{
-			cout << "\n HIT: a ship has been sighted at "
-				 << "those coordinates sir, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n\n" << endl;
 		}
 	}
 	else if (play1.myWaters[row][col] == " s") // hit submarine
@@ -855,13 +863,13 @@ const void board::fireMissile2() // for player2 to hit player1's board
 
 		if (subLife1 == 0)
 		{
-			cout << "\n HIT: the wreckage reveals the enemy's "
-				 << "SUBMARINE has been SUNK, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: the wreckage reveals the enemy's "
+				 << "SUBMARINE has been SUNK, SIR.\n\n\n" << endl;
 		}
 		else
 		{
-			cout << "\n HIT: a ship has been sighted at "
-				 << "those coordinates sir, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n\n" << endl;
 		}
 	}
 	else if (play1.myWaters[row][col] == " d") // hit destroyer
@@ -873,13 +881,13 @@ const void board::fireMissile2() // for player2 to hit player1's board
 
 		if (desLife1 == 0)
 		{
-			cout << "\n HIT: the wreckage reveals the enemy's "
-				 << "DESTROYER has been SUNK, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: the wreckage reveals the enemy's "
+				 << "DESTROYER has been SUNK, SIR.\n\n\n" << endl;
 		}
 		else
 		{
-			cout << "\n HIT: a ship has been sighted at "
-				 << "those coordinates sir, SIR.\n\n" << endl;
+			cout << "\n\n\n\n HIT: a ship has been sighted at "
+				 << "those coordinates sir, SIR.\n\n\n" << endl;
 		}
 	}
 
@@ -887,8 +895,9 @@ const void board::fireMissile2() // for player2 to hit player1's board
 	{ winState(false); }
 	else
 	{
-		cout << "\n\n\n\n Press ENTER to continue...";
-		getchar();
+		cout << " Press ENTER to continue...";
+		getchar(); // so player can see the results of their efforts
+		cout << "\n\n\n\n\n" << endl;
 
 		fireMissile1();
 	}
@@ -910,8 +919,8 @@ const bool board::allSunk()
 		}
 	}
 
-	if (hits == 17) { return true; }
-
+	if (hits == 17)
+	{ return true; }
 	return false;
 }
 
@@ -921,19 +930,20 @@ const bool board::allSunk()
 const void board::winState(bool play1Win)
 {
 	string response;
-	
+
+	clear(); // for convenience
+
 	if (play1Win)
-	{
-		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\t\t\tMISSION SUCCESS!\n\n"
-			 << "\t\t\tCONGRATULATIONS, CAPTAIN HONG!\n\n\n\n\n\n\n\n\n\n\n\n";
-		// insert celebratory ascii art
-	}
+	{ cout << "\t\t\tL.T. RED:"; }
 	else
-	{
-		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\t\t\tMISSION SUCCESS!\n\n"
-			 << "\t\t\tCONGRATULATIONS, CAPTAIN CHONG!\n\n\n\n\n\n\n\n\n\n\n\n";
-		// insert celebratory ascii art
-	}
+	{ cout << "\t\t\tL.T. BLUE:"; }
+	
+	cout << " MISSION SUCCESS!\n\n" << endl;
+
+	if (play1Win)
+	{ cout << "\t\t\tCONGRATULATIONS, CAPTAIN HONG!\n\n\n\n\n\n\n\n\n\n\n\n" << endl; }
+	else
+	{ cout << "\t\t\tCONGRATULATIONS, CAPTAIN CHONG!\n\n\n\n\n\n\n\n\n\n\n\n" << endl; }
 
 	cout << "\n Play Again? (Y or N): ";
 
@@ -968,9 +978,9 @@ const void board::winState(bool play1Win)
 }
 
 
-/*int main()
+int main()
 {
 	play1.start();
 
 	return 0;
-}*/
+}
