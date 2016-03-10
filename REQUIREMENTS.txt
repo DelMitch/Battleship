@@ -1,27 +1,63 @@
--- board object, two-dimensional vector of strings forming a 10 by 10 grid, init with " ~" (because it looks like water, the space is there for visual formatting of the board)
+Requirments for Battleship Program developed by Dain Harmon and Addelina Mitchell
 
--- each board object contains 2 boards: one to hold ships and one to hide the ships from the opponent
+- Board object, two-dimensional vector of strings forming a 10 by 10 grid, init with " ~" (because it looks like water, the space is there for visual formatting of the board)
+-- Unit Test Exists: Passes
 
--- users must be able to place ships in board
 
--- users must not be able to scroll up to see opponent's board setup
+- Each board object contains 2 boards: one to hold ships and one to hide the ships from the opponent
+-- Unit Test Exists: Passes
 
--- input handling must be robust (there's a kitten walking on the keyboard)
 
--- X's must show on board the opponent sees to indicate a hit, O's for a miss
+- Users must be able to place ships in board
+-- Unit Test Exists: Passes
 
--- must be able to print both boards in a board object
 
--- users must be notified of hit, miss, and sink
+- Users must not be able to scroll up to see opponent's board setup
+-- Manual Interface Test: Passes
 
--- must display rules, cannot assume they know the game but will assume that they read and understand English
 
--- ships cannot be allowed to overlap
+- Input handling must be robust (there's a kitten walking on the keyboard)
+-- Manual Interface Test: Passes
 
--- ships cannot be either partially or fully out of bounds
 
--- must be winnable; there must be a victor
+- Users must be able to attack a target point of their choice as the rules allow
+-- Unit Test Exists: Passes
+-- Manual Interface Test: Passes
 
--- must be 5 ships: carrier (5), battleship (4), cruiser (3), submarine (3), destroyer (2)
 
--- must be able to differentiate between cruiser and submarine
+- X's must show on board the opponent sees to indicate a hit, O's for a miss
+-- Unit Test Exists: Passes
+-- Manual Interface Test: Passes
+
+
+- Must be able to print both boards in a board object
+-- Manual Interface Test: Passes
+
+
+- Users must be notified of hit, miss, and sink
+-- Manual Interface Test: Passes
+
+
+- Must display rules, cannot assume they know the game but will assume that they read and understand English
+-- Manual Interface Test: Passes
+
+
+- Ships cannot be allowed to overlap
+-- Manual Interface Test: Passes
+
+
+- Ships cannot be either partially or fully out of bounds
+-- Manual Interface Test: Passes
+
+
+- Must be winnable; there must be a victor
+-- Unit Test Exists: Passes
+-- Manual Interface Test: Passes
+
+
+- Must be 5 ships: carrier (5), battleship (4), cruiser (3), submarine (3), destroyer (2)
+-- Manual Interface Test: Passes
+
+
+- Must be able to differentiate between cruiser and submarine
+-- Manual Interface Test: Passes
